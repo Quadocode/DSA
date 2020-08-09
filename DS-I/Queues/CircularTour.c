@@ -10,12 +10,6 @@ struct PetrolPump
     struct PetrolPump *next;
 };
 
-struct Node
-{
-    int data;
-    struct Node *next;
-};
-
 struct Queue
 {
     struct PetrolPump *front,*rear;
@@ -112,7 +106,6 @@ struct Queue *createQueue(struct PetrolPump pumps[],int size)
 
 bool performCircularTour(struct Queue *pumpsQueue)
 {
-    //pumpsQueue
     int curr_petrol = 0;
     struct PetrolPump *temp = pumpsQueue->front;
     if(!isEmpty(pumpsQueue))
@@ -146,7 +139,7 @@ int main()
 {
     struct PetrolPump pumps[] = {{6, 4, 1}, {3, 6, 2}, {7, 3, 3}, {4, 5, 4}};
     struct PetrolPump failPumps[] = {{3,4,1},{4,5,2},{5,6,3},{7,8,4}};
-    struct Queue *pumpsQueue = createQueue(failPumps,4);
+    struct Queue *pumpsQueue = createQueue(pumps,4);
     displayQueue(pumpsQueue);
     if(performCircularTour(pumpsQueue))
     {
