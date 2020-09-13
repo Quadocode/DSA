@@ -1,4 +1,8 @@
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+
+int maxSize = 10;
 
 int getLeftChildIndex(int index)
 {
@@ -56,10 +60,17 @@ void heapifyUp(int *arr, int index)
     }
 }
 
-void addData(int *arr, int size, int data)
+bool addData(int *arr, int size, int data)
 {
+    size++;
+    if(size > maxSize)
+    {
+        printf("heap is full\n");
+        return false;
+    }
     arr[size-1] = data;
     heapifyUp(arr, size-1);
+    return true;
 }
 
 void buildMaxHeap(int *arr, int size)
@@ -108,14 +119,23 @@ int main()
     printHeap(arr, size);
     buildMaxHeap(arr, size);
     printHeap(arr, size);
-    size++;
-    addData(arr, size, 110);
-    printHeap(arr, size);
-    while(size != 0)
+    
+    if(addData(arr, size, 800))
     {
-         int max = extractMax(arr, size);
-        printf("max = %d\n", max);
-        size--;
+        size++;
     }
+    printHeap(arr, size);
+    
+    // if(addData(arr, size, 755))
+    // {
+    //     size++;
+    // }
+    // printHeap(arr, size);
+    // while(size != 0)
+    // {
+    //     int max = extractMax(arr, size);
+    //     printf("max = %d\n", max);
+    //     size--;
+    // }
     return 0;
 }
